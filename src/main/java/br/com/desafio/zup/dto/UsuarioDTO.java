@@ -19,10 +19,12 @@ public class UsuarioDTO implements Serializable {
     @Length(max = 60)
     private String nome;
 
+    @NotBlank
     @Email
     @Length(max = 60)
     private String email;
 
+    @NotBlank
     @CPF
     @Length(max = 14)
     private String cpf;

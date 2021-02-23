@@ -1,11 +1,11 @@
 package br.com.desafio.zup.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +13,8 @@ import java.util.Map;
 @ControllerAdvice
 public class CustomExceptionHandler {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
+    public ResponseEntity<Map<String, String>> handleValidationExceptions(
             MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
@@ -23,18 +22,16 @@ public class CustomExceptionHandler {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        return errors;
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UsuarioNaoEncontradoException.class)
-    public String handleUsuarioNaoEncontradoException(UsuarioNaoEncontradoException usuarioNaoEncontradoException){
-        return usuarioNaoEncontradoException.getMessage();
+    public ResponseEntity<String> handleUsuarioNaoEncontradoException(UsuarioNaoEncontradoException usuarioNaoEncontradoException){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(usuarioNaoEncontradoException.getMessage());
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(JaExisteUsuarioException.class)
-    public String handleJaExisteUsuarioException(JaExisteUsuarioException jaExisteUsuarioException){
-        return jaExisteUsuarioException.getMessage();
+    public ResponseEntity<String> handleJaExisteUsuarioException(JaExisteUsuarioException jaExisteUsuarioException){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jaExisteUsuarioException.getMessage());
     }
 }
