@@ -1,5 +1,6 @@
 package br.com.desafio.zup.dto;
 
+import br.com.desafio.zup.models.Usuario;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -67,5 +68,17 @@ public class UsuarioDTO implements Serializable {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public static UsuarioDTO convertBy(Usuario usuario){
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+
+        usuarioDTO.id = usuario.getId();
+        usuarioDTO.nome = usuario.getNome();
+        usuarioDTO.cpf = usuario.getCpf();
+        usuarioDTO.email = usuario.getEmail();
+        usuarioDTO.dataNascimento = usuario.getDataNascimento();
+
+        return usuarioDTO;
     }
 }

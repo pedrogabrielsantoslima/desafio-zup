@@ -1,5 +1,6 @@
 package br.com.desafio.zup.dto;
 
+import br.com.desafio.zup.models.Vacina;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
@@ -52,5 +53,16 @@ public class VacinaDTO implements Serializable {
 
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public static VacinaDTO convertBy(Vacina vacina){
+        VacinaDTO vacinaDTO = new VacinaDTO();
+
+        vacinaDTO.id = vacina.getId();
+        vacinaDTO.nome = vacina.getNome();
+        vacinaDTO.dataAplicacao = vacina.getDataAplicacao();
+        vacinaDTO.idUsuario = vacina.getUsuario().getId();
+
+        return vacinaDTO;
     }
 }
