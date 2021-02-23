@@ -1,5 +1,7 @@
 package br.com.desafio.zup.models;
 
+import br.com.desafio.zup.dto.UsuarioDTO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -74,6 +76,17 @@ public class Usuario {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public static Usuario convertBy(UsuarioDTO usuarioDTO){
+        Usuario usuario = new Usuario();
+
+        usuario.nome = usuarioDTO.getNome();
+        usuario.cpf = usuarioDTO.getCpf();
+        usuario.email = usuarioDTO.getEmail();
+        usuario.dataNascimento = usuarioDTO.getDataNascimento();
+
+        return usuario;
     }
 
 }

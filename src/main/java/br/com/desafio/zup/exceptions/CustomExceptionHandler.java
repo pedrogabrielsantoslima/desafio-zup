@@ -25,4 +25,16 @@ public class CustomExceptionHandler {
         });
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(UsuarioNaoEncontradoException.class)
+    public String handleUsuarioNaoEncontradoException(UsuarioNaoEncontradoException usuarioNaoEncontradoException){
+        return usuarioNaoEncontradoException.getMessage();
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(JaExisteUsuarioException.class)
+    public String handleJaExisteUsuarioException(JaExisteUsuarioException jaExisteUsuarioException){
+        return jaExisteUsuarioException.getMessage();
+    }
 }

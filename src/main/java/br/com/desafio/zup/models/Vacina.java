@@ -1,5 +1,7 @@
 package br.com.desafio.zup.models;
 
+import br.com.desafio.zup.dto.VacinaDTO;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -51,5 +53,15 @@ public class Vacina {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public static Vacina convertBy(VacinaDTO vacinaDTO, Usuario usuario){
+        Vacina vacina = new Vacina();
+
+        vacina.nome = vacinaDTO.getNome();
+        vacina.dataAplicacao = vacinaDTO.getDataAplicacao();
+        vacina.usuario = usuario;
+
+        return vacina;
     }
 }
