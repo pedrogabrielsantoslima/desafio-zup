@@ -1,9 +1,9 @@
 package br.com.desafio.zup.repository;
 
-import br.com.desafio.zup.models.Vacina;
+import br.com.desafio.zup.models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface VacinaRepository extends JpaRepository<Vacina, Integer> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 }
