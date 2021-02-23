@@ -1,4 +1,4 @@
-package br.com.desafio.zup;
+package br.com.desafio.zup.controller;
 
 import br.com.desafio.zup.dto.UsuarioDTO;
 import br.com.desafio.zup.models.Usuario;
